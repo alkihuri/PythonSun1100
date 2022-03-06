@@ -12,8 +12,8 @@ def GetImage(nameToSet, sizeXtoSet,sizeYtoSet):
 
 def WindowSetUp(width, height):
     window  = display.set_mode((width,height))
-    display.set_caption("PythonSun_1100")
-    backgroundImage = GetImage("background.png",width,height) 
+    display.set_caption("PythonTue_1700")
+    backgroundImage = GetImage("hero.png",width,height) 
     window.blit(backgroundImage,(0,0))  
     display.update()
 
@@ -22,7 +22,7 @@ gameIsOn = True
 while gameIsOn:
     time.delay(50)
     WindowSetUp(500,700)   
-    for eachEvent in event.get():
-        if eachEvent.type == KEYDOWN: 
+    for eachEvent in event.get(): 
+        if eachEvent.type == KEYDOWN:  
             if eachEvent.key == K_SPACE:
                 gameIsOn = False
