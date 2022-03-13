@@ -47,6 +47,21 @@ class Player(pygame.sprite.Sprite):
         if keystate[pygame.K_DOWN]:
             self.speedy = 8
 
+        if keystate[pygame.K_a]:
+            self.speedx = -8
+        if keystate[pygame.K_d]:
+            self.speedx = 8
+        if keystate[pygame.K_w]:
+            self.speedy = -8
+        if keystate[pygame.K_s]:
+            self.speedy = 8
+
+        if keystate[pygame.K_SPACE]: 
+            i = 0
+            while i < 6:
+                self.speedy = 10
+                i = i + 1
+
         self.rect.x += self.speedx
         self.rect.y += self.speedy 
 
@@ -56,6 +71,15 @@ class Player(pygame.sprite.Sprite):
             self.rect.right = WIDTH
         if self.rect.left < 0:
             self.rect.left = 0 
+
+def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.transform.scale(pew_img, (50, 38))
+        self.image.set_colorkey(BLACK)
+        self.rect = self.image.get_rect()
+        self.rect.centerx = WIDTH / 2
+        self.rect.bottom = HEIGHT - 10
+        self.speedy = 0
 
 
 background = pygame.image.load(path.join(img_dir, "labyrinth_field.png")).convert()
