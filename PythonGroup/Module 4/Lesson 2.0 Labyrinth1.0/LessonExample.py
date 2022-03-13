@@ -34,7 +34,7 @@ class Player(pygame.sprite.Sprite):
         self.speedx = 0
         self.speedy = 0
     def update(self):
-
+        # обработка нажатия клавиш
         self.speedx = 0
         self.speedy = 0
         keystate = pygame.key.get_pressed()
@@ -50,6 +50,7 @@ class Player(pygame.sprite.Sprite):
         self.rect.x += self.speedx
         self.rect.y += self.speedy 
 
+        # реализовать тоже самое для высоты :) 
         
         if self.rect.right > WIDTH:
             self.rect.right = WIDTH
@@ -82,4 +83,3 @@ while running:
     all_sprites.draw(screen)
     # После отрисовки всего, переворачиваем экран (просто нужно)
     pygame.display.flip()
-    
