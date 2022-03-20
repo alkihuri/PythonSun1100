@@ -47,6 +47,15 @@ class Player(pygame.sprite.Sprite):
         if keystate[pygame.K_DOWN]:
             self.speedy = 8
 
+        if keystate[pygame.K_a]:
+            self.speedx = -8
+        if keystate[pygame.K_d]:
+            self.speedx = 8
+        if keystate[pygame.K_w]:
+            self.speedy = -8
+        if keystate[pygame.K_s]:
+            self.speedy = 8
+
         self.rect.x += self.speedx
         self.rect.y += self.speedy 
 
