@@ -60,11 +60,12 @@ class Player(pygame.sprite.Sprite):
 
 
 def DrawWin(): 
-    pygame.init() 
+    pygame.init()  
+    screen = pygame.display.set_mode((800  , HEIGHT))
     pygame.display.set_caption("Win / Demo ")
     color = GREEN 
     screen.fill(color)
-    background = pygame.image.load(path.join(img_dir, "win.png")).convert()
+    background = pygame.image.load(path.join(img_dir, "win.jpg")).convert()
     background_rect = background.get_rect()
     screen.blit(background, background_rect) 
     pygame.display.flip() 
@@ -104,6 +105,7 @@ while running:
 
     if player.rect.y < 166:
         win = True
+    print(player.rect.x,player.rect.y)
 
 
 
