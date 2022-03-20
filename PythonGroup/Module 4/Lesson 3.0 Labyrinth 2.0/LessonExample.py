@@ -60,9 +60,20 @@ class Player(pygame.sprite.Sprite):
 
 
 def DrawWin(): 
-    background = pygame.image.load(path.join(img_dir, "win.jpg")).convert() 
-    screen.clear() 
-    print("Win!")
+    pygame.init() 
+    pygame.display.set_caption("Win / Demo ")
+    color = GREEN 
+    screen.fill(color)
+    background = pygame.image.load(path.join(img_dir, "win.png")).convert()
+    background_rect = background.get_rect()
+    screen.blit(background, background_rect) 
+    pygame.display.flip() 
+
+def DrawGame(): 
+    screen.fill(BLACK)
+    screen.blit(background, background_rect)
+    all_sprites.draw(screen) 
+    pygame.display.flip()
 
 
 background = pygame.image.load(path.join(img_dir, "labyrinth_field.png")).convert()
@@ -75,6 +86,7 @@ all_sprites.add(player)
 
 # Цикл игры
 running = True
+win = False
 while running:
     # Держим цикл на правильной скорости
     clock.tick(FPS)
@@ -83,12 +95,16 @@ while running:
         # проверка для закрытия окна
         if event.type == pygame.QUIT:
             running = False
-    all_sprites.update()
-    if player.rect.y < 200:
+    all_sprites.update()  
+
+    if win:
         DrawWin()
-    # Рендеринг
-    screen.fill(BLACK)
-    screen.blit(background, background_rect)
-    all_sprites.draw(screen)
-    # После отрисовки всего, переворачиваем экран (просто нужно)
-    pygame.display.flip()
+    else:
+        DrawGame()
+
+    if player.rect.y < 166:
+        win = True
+
+
+
+  
