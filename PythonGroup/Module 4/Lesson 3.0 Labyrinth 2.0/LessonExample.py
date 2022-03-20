@@ -61,10 +61,7 @@ class Player(pygame.sprite.Sprite):
 
 def DrawWin(): 
     background = pygame.image.load(path.join(img_dir, "win.jpg")).convert() 
-    screen.clear()
-    screen.fill(BLACK)
-    screen.blit(background, background_rect)
-    all_sprites.draw(screen)
+    screen.clear() 
     print("Win!")
 
 
