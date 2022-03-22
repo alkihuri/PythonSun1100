@@ -98,8 +98,10 @@ while running:
         DrawWin()
     else:
         DrawGame() 
+        
     if player.rect.y < 166:
         win = True 
+    print(player.rect.x, player.rect.y)
 
 
 
