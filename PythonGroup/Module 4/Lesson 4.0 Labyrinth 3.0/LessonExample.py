@@ -94,7 +94,9 @@ player = Player()
 
 walls = []
 wall = Wall(200,200)
+wall2 = Wall(100,200)
 walls.append(wall)
+walls.append(wall2)
 
 for eachWall in walls:
     all_sprites.add(eachWall)
@@ -120,10 +122,11 @@ while running:
         
     if player.rect.y < 166:
         win = True 
+
     print(player.rect.x, player.rect.y)
 
     for eachWall in walls:
-        if(sprite.collide_rect(player,wall)):
+        if(sprite.collide_rect(player,eachWall)):
             running = False
 
 
