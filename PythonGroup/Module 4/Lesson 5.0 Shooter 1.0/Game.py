@@ -22,10 +22,11 @@ YELLOW = (255, 255, 0)
 pygame.init() 
 pygame.mixer.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Shooter 1.0 Example =) !")
+pygame.display.set_caption("Shooter Example =)")
 clock = pygame.time.Clock()
 
 class Player(pygame.sprite.Sprite):
+    score = 0
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.transform.scale(player_img, (50, 50))
@@ -124,6 +125,8 @@ while running:
 
     hits = pygame.sprite.groupcollide(mobs, bullets, True, True)
     for hit in hits:
+        player.score+=1
+        print(player.score)
         m = Mob()
         all_sprites.add(m)
         mobs.add(m)
@@ -135,7 +138,13 @@ while running:
 
     # Рендеринг
     screen.fill(BLACK)
-    screen.blit(background, background_rect)
+    screen.blit(background, background_rect) 
+    #text
+    pygame.font.init()  
+    scoreFont = pygame.font.SysFont('arial', 25)
+    text = "Score: " + str(player.score) 
+    scoreOnScreen = scoreFont.render(text, True, (255,0,0))
+    screen.blit(scoreOnScreen,(0,0))
     all_sprites.draw(screen)
     # После отрисовки всего, переворачиваем экран
     pygame.display.flip()
