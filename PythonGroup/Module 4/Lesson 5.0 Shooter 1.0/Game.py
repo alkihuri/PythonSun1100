@@ -1,153 +1,101 @@
-# Graphics
-import pygame
-import random 
-from os import path
+print("Robolab Python Pro Course / Shooter template project =) ")
 
-WIDTH = 480
-HEIGHT = 600
-FPS = 15
+
+# link for presentation => https://docs.google.com/presentation/d/1UkxfjWFpecW7BD-9ngFL7hs1fSykJnfQynp53x15_i8/edit#slide=id.g122dbdc220d_1_85
+
+
+# modules import 
+
+
+
+
+
+
 
 # colors set up
-WHITE = (255, 255, 255)
-BLACK = (0, 0, 0)
-RED = (255, 0, 0)
-GREEN = (0, 255, 0)
-BLUE = (0, 0, 255)
-YELLOW = (255, 255, 0)
+
+
+
+
+
+
+
 
 # Window creating
-pygame.init() 
-pygame.mixer.init()
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Shooter Example =)")
-clock = pygame.time.Clock()
 
 
-img_dir = path.join(path.dirname(__file__), 'img') 
-# Game sprites
-background = pygame.image.load(path.join(img_dir, "field.png")).convert()
-background_rect = background.get_rect()
-player_img = pygame.image.load(path.join(img_dir, "ship.png")).convert()
-npc_img = pygame.image.load(path.join(img_dir, "npc.png")).convert()
-bullet_img = pygame.image.load(path.join(img_dir, "bullet.png")).convert()
 
-class Player(pygame.sprite.Sprite):
-    score = 0
-    def __init__(self):
-        pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.transform.scale(player_img, (50, 50))
-        self.image.set_colorkey(WHITE)
-        self.rect = self.image.get_rect()
-        self.rect.centerx = WIDTH / 2
-        self.rect.bottom = HEIGHT - 10
-        self.speedx = 0
 
-    def update(self):
-        self.speedx = 0
-        keystate = pygame.key.get_pressed()
-        if keystate[pygame.K_LEFT]:
-            self.speedx = -8
-        if keystate[pygame.K_RIGHT]:
-            self.speedx = 8
-        self.rect.x += self.speedx
-        if self.rect.right > WIDTH:
-            self.rect.right = WIDTH
-        if self.rect.left < 0:
-            self.rect.left = 0
+ 
+# Game sprites 
 
-    def shoot(self):
-        bullet = Bullet(self.rect.centerx, self.rect.top)
-        all_sprites.add(bullet)
-        bullets.add(bullet)
 
-class Mob(pygame.sprite.Sprite):
-    def __init__(self):
-        pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.transform.scale(npc_img, (50, 50))
-        self.image.set_colorkey(WHITE)
-        self.rect = self.image.get_rect()
-        self.rect.x = random.randrange(WIDTH - self.rect.width)
-        self.rect.y = random.randrange(-300, -30)
-        self.speedy = random.randrange(1, 8)
-        self.speedx = random.randrange(-3, 3)
 
-    def update(self):
-        self.rect.x += self.speedx
-        self.rect.y += self.speedy
-        if self.rect.top > HEIGHT + 10 or self.rect.left < -25 or self.rect.right > WIDTH + 20:
-            self.rect.x = random.randrange(WIDTH - self.rect.width)
-            self.rect.y = random.randrange(-100, -40)
-            self.speedy = random.randrange(1, 8)
+#player class
+ 
 
-class Bullet(pygame.sprite.Sprite):
-    def __init__(self, x, y):
-        pygame.sprite.Sprite.__init__(self)
-        self.image = bullet_img
-        self.image.set_colorkey(BLACK)
-        self.rect = self.image.get_rect()
-        self.rect.bottom = y
-        self.rect.centerx = x
-        self.speedy = -10
 
-    def update(self):
-        self.rect.y += self.speedy
-        # убить, если он заходит за верхнюю часть экрана
-        if self.rect.bottom < 0:
-            self.kill()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ # mob class
+
+
+
+
+
+
+
+
+
+
+
+
+#bullet class
+
+
+
 
 #Game entities innit
-all_sprites = pygame.sprite.Group()  
-mobs = pygame.sprite.Group()
-bullets = pygame.sprite.Group()
-player = Player() 
-all_sprites.add(player)
 
-for i in range(2):
-    m = Mob()
-    all_sprites.add(m)
-    mobs.add(m)
 
-# Цикл игры
-running = True
-while running:
-    # Держим цикл на правильной скорости
-    clock.tick(FPS)
-    # Ввод процесса (события)
-    for event in pygame.event.get():
-        # проверка для закрытия окна
-        if event.type == pygame.QUIT:
-            running = False
-        elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_SPACE:
-                player.shoot()
 
-    # Обновление
-    all_sprites.update()
 
-    hits = pygame.sprite.groupcollide(mobs, bullets, True, True)
-    for hit in hits:
-        player.score+=1
-        print(player.score)
-        m = Mob()
-        all_sprites.add(m)
-        mobs.add(m)
 
-    # Проверка, не ударил ли моб игрока
-    hits = pygame.sprite.spritecollide(player, mobs, False)
-    if hits:
-        running = False
 
-    # Рендеринг
-    screen.fill(BLACK)
-    screen.blit(background, background_rect) 
-    #text
-    pygame.font.init()  
-    scoreFont = pygame.font.SysFont('arial', 25)
-    text = "Score: " + str(player.score) 
-    scoreOnScreen = scoreFont.render(text, True, (255,0,0))
-    screen.blit(scoreOnScreen,(0,0))
-    all_sprites.draw(screen)
-    # После отрисовки всего, переворачиваем экран
-    pygame.display.flip()
 
-pygame.quit()
+
+
+# Game Lyfecycle
+
+
+
+
+    # rendering
+
+
+ 
+
+    #win lose  situation 
+    
+
+
+
+ 
+    #text 
+     
+
+ 
