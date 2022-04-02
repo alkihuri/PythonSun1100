@@ -22,14 +22,14 @@ YELLOW = (255, 255, 0)
 pygame.init() 
 pygame.mixer.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Robolab Python Workshop!")
+pygame.display.set_caption("Shooter 1.0 Example =) !")
 clock = pygame.time.Clock()
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.transform.scale(player_img, (50, 38))
-        self.image.set_colorkey(BLACK)
+        self.image = pygame.transform.scale(player_img, (50, 50))
+        self.image.set_colorkey(WHITE)
         self.rect = self.image.get_rect()
         self.rect.centerx = WIDTH / 2
         self.rect.bottom = HEIGHT - 10
@@ -56,11 +56,11 @@ class Player(pygame.sprite.Sprite):
 class Mob(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = meteor_img
-        self.image.set_colorkey(BLACK)
+        self.image = pygame.transform.scale(npc_img, (50, 50))
+        self.image.set_colorkey(WHITE)
         self.rect = self.image.get_rect()
         self.rect.x = random.randrange(WIDTH - self.rect.width)
-        self.rect.y = random.randrange(-100, -40)
+        self.rect.y = random.randrange(-300, -30)
         self.speedy = random.randrange(1, 8)
         self.speedx = random.randrange(-3, 3)
 
@@ -91,8 +91,8 @@ class Bullet(pygame.sprite.Sprite):
 # Загрузка всей игровой графики
 background = pygame.image.load(path.join(img_dir, "field.png")).convert()
 background_rect = background.get_rect()
-player_img = pygame.image.load(path.join(img_dir, "player.png")).convert()
-meteor_img = pygame.image.load(path.join(img_dir, "npc.png")).convert()
+player_img = pygame.image.load(path.join(img_dir, "ship.png")).convert()
+npc_img = pygame.image.load(path.join(img_dir, "npc.png")).convert()
 bullet_img = pygame.image.load(path.join(img_dir, "bullet.png")).convert()
 
 all_sprites = pygame.sprite.Group()
@@ -100,7 +100,7 @@ mobs = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
 player = Player()
 all_sprites.add(player)
-for i in range(8):
+for i in range(2):
     m = Mob()
     all_sprites.add(m)
     mobs.add(m)
