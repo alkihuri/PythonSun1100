@@ -1,16 +1,13 @@
-# Игра Shmup - 4 часть
-# Графика
+# Graphics
 import pygame
 import random 
 from os import path
-
-img_dir = path.join(path.dirname(__file__), 'img')
 
 WIDTH = 480
 HEIGHT = 600
 FPS = 15
 
-# Задаем цвета
+# colors set up
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
@@ -18,12 +15,21 @@ GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
 
-# Создаем игру и окно
+# Window creating
 pygame.init() 
 pygame.mixer.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Shooter Example =)")
 clock = pygame.time.Clock()
+
+
+img_dir = path.join(path.dirname(__file__), 'img') 
+# Game sprites
+background = pygame.image.load(path.join(img_dir, "field.png")).convert()
+background_rect = background.get_rect()
+player_img = pygame.image.load(path.join(img_dir, "ship.png")).convert()
+npc_img = pygame.image.load(path.join(img_dir, "npc.png")).convert()
+bullet_img = pygame.image.load(path.join(img_dir, "bullet.png")).convert()
 
 class Player(pygame.sprite.Sprite):
     score = 0
@@ -89,18 +95,13 @@ class Bullet(pygame.sprite.Sprite):
         if self.rect.bottom < 0:
             self.kill()
 
-# Загрузка всей игровой графики
-background = pygame.image.load(path.join(img_dir, "field.png")).convert()
-background_rect = background.get_rect()
-player_img = pygame.image.load(path.join(img_dir, "ship.png")).convert()
-npc_img = pygame.image.load(path.join(img_dir, "npc.png")).convert()
-bullet_img = pygame.image.load(path.join(img_dir, "bullet.png")).convert()
-
-all_sprites = pygame.sprite.Group()
+#Game entities innit
+all_sprites = pygame.sprite.Group()  
 mobs = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
-player = Player()
+player = Player() 
 all_sprites.add(player)
+
 for i in range(2):
     m = Mob()
     all_sprites.add(m)
