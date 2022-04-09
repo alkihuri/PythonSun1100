@@ -40,6 +40,15 @@ class Player(pygame.sprite.Sprite):
         self.rect.centerx = WIDTH /2
         self.rect.bottom = HEIGHT - player_size.x
         self.speedx = 0
+
+    def update(self):
+        self.speedx = 0
+        keysate = pygame.key.get_pressed()
+        if keysate[pygame.K_LEFT]:
+            self.speedx = -8 
+        if keysate[pygame.K_RIGHT]:
+            self.speedx = 8   
+        self.rect.x += self.speedx
     #shoot mechanic function
 
 
