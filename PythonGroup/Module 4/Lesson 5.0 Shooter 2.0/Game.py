@@ -40,69 +40,37 @@ class Player(pygame.sprite.Sprite):
         self.rect.centerx = WIDTH /2
         self.rect.bottom = HEIGHT - player_size.x
         self.speedx = 0
+    #shoot mechanic function
 
 
+#mob generation system ~ mob (NPC) class
 
+#mob generation system ~ generation
 
+#Game lifecycle
+    #fps
 
+    #event handler
 
+        #event to close window
 
+        #shoot [if event.type == pygame.KEYDOWN] [if event.key == pygame.K_SPACE]
 
+    #update of render
 
-
-
-
-
-
-
-
-
-
- # mob class
-
-
-
-
-
-
-
-
-
-
-
-
-#bullet class
-
-
-
-
-#Game entities innit
-
-
-
-
-
-
-
-
-
-# Game Lyfecycle
-
-
-
-
-    # rendering
+    #screen flip
 
 
  
 
-    #win lose  situation 
-    
+
+ 
+
+
+
 
 
 
  
-    #text 
-     
 
  
