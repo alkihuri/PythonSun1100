@@ -52,6 +52,8 @@ class Player(pygame.sprite.Sprite):
     #shoot mechanic function
 
 
+#bullet class
+
 #mob generation system ~ mob (NPC) class
 class Mob(pygame.sprite.Sprite):
     def __init__(self):
