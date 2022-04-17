@@ -32,6 +32,7 @@ bullet_img = pygame.image.load(path.join(img_dir,"bullet.png")).convert()
 #player class
 class Player(pygame.sprite.Sprite):
     def __init__(self):
+        self.score = 0
         pygame.sprite.Sprite.__init__(self)
         player_size = (50,50)
         self.image = pygame.transform.scale(player_img,player_size)
@@ -50,10 +51,25 @@ class Player(pygame.sprite.Sprite):
             self.speedx = 8   
         self.rect.x += self.speedx
     #shoot mechanic function
-
-
+    def shoot(self):
+        bullet = Bullet(self.rect.centerx,self.rect.top)
+        all_sprites.add(bullet)
+        bullets.add(bullet)
+    
 #bullet class
-
+class Bullet(pygame.sprite.Sprite):
+    def __init__(self,x,y):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = bullet_img
+        self.image.set_colorkey(BLACK)
+        self.rect = self.image.get_rect()
+        self.rect.bottom = y
+        self.rect.centerx = x
+        self.speedy = -10
+    def update(self):
+        self.rect.y += self.speedy
+        if self.rect.bottom < 0:
+            self.kill()
 #mob generation system ~ mob (NPC) class
 class Mob(pygame.sprite.Sprite):
     def __init__(self):
@@ -73,6 +89,7 @@ class Mob(pygame.sprite.Sprite):
             self.rect.x = random.randrange(WIDTH - self.rect.width)
             self.rect.y = random.randrange(-100, -40)
             self.speedy = random.randrange(1, 8)
+    
 #mob generation system ~ generation
  
 all_sprites = pygame.sprite.Group()  
@@ -98,18 +115,38 @@ while running:
             running = False
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
-                print("Hello!")
+                player.shoot()
 
     # sprites update
     all_sprites.update()   
+    
+    hits = pygame.sprite.groupcollide(mobs,bullets,True,True)
+    for hit in hits:
+        m = Mob()
+        all_sprites.add(m)
+        mobs.add(m)
+        player.score+=1
+        print(player.score)
+
+    hits = pygame.sprite.spritecollide(player,mobs,False)
+    if hits:
+        running = False
+    if(player.score > 10):
+        print("Win!")
     #update of render
     screen.fill(BLACK)
     screen.blit(background, background_rect) 
     all_sprites.draw(screen) 
     #shoot [if event.type == pygame.KEYDOWN] [if event.key == pygame.K_SPACE]
-
+    pygame.font.init()
+    scoreFont = pygame.font.SysFont('arial',25)
+    text = "Score: " + str(player.score)
+    scoreOnScreen = scoreFont.render(text,True,(225,0,0))
+    screen.blit(scoreOnScreen,(0,0))
+    all_sprites.draw(screen)
     #screen flip
     pygame.display.flip()
 pygame.quit()
 
- 
+
+
