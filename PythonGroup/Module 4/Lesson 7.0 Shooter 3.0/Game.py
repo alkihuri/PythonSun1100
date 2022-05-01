@@ -19,7 +19,7 @@ pygame.init()
 pygame.mixer.init()
 window_size = (WIDTH,HEIGHT)
 screen = pygame.display.set_mode(window_size)
-pygame.display.set_caption("Shooter 2nd lesson")
+pygame.display.set_caption("Shooter 3rd lesson")
 clock = pygame.time.Clock() 
 # Game sprites 
 img_dir = path.join(path.dirname(__file__),"img")
