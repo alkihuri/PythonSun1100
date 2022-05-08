@@ -5,15 +5,17 @@ print("Robolab Python Pro Course / Shooter template project =) ")
 
 
 # modules import 
+import pygame
+import random
+from os import path
 
-
-
-
-
-
+width = 480
+height = 600
+FPS = 15
 
 # colors set up
 
+WHITE = (255, 255, 255)
 
 
 
