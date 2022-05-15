@@ -28,12 +28,10 @@ C_RED = (255, 0, 0)
 C_BLACK = (0, 0, 0
 
 class FinalSprite(pygame.sprite.Sprite):
-  def __init__(self, player_image, player_x, player_y, player_speed):
-    pygame.sprite.Sprite.__init__(self)
-    self.image = pygame.transform.scale(pygame.image.load(player_image), (60, 120))
-    self.speed = player_speed
-
-     
+    def __init__(self, player_image, player_x, player_y, player_speed):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.transform.scale(pygame.image.load(player_image), (60, 120))
+        self.speed = player_speed
     self.rect = self.image.get_rect()
     self.rect.x = player_x
     self.rect.y = player_y
@@ -48,13 +46,12 @@ class Hero(pygame.sprite.Sprite):
         self.y_speed += 0.25
     def jump(self, y):
         if self.stands_on:
-            self.y_speed = 
+            self.y_speed = y
 for event in pygame.event.get():
- if event.type == pygame.KEYDOWN:
- if event.key == pygame.K_LEFT:
- robin.x_speed = -5
- elif event.key == pygame.K_RIGHT:
- robin.x_speed = 5
- elif event.key == pygame.K_UP:
- robin.jump(-7)
+    if event.key == pygame.K_LEFT:
+        robin.x_speed = -5
+    elif event.key == pygame.K_RIGHT:
+        robin.x_speed = 5
+    elif event.key == pygame.K_UP:
+        robin.jump(-7)
     
