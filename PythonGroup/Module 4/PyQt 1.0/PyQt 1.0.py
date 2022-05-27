@@ -16,7 +16,7 @@ class MyWindow(QMainWindow):
         self.newLabel = QtWidgets.QLabel(self)
         self.newLabel.setText(text)
         self.newLabel.move(x,y) 
-    
+
     def CreateButton(self,text,x,y,fun):
         self.newButton = QtWidgets.QPushButton(self)
         self.newButton.setText(text)
