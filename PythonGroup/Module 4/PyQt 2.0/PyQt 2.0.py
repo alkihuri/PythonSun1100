@@ -5,21 +5,20 @@ import sys
 
 class MyWindow(QMainWindow):
     def __init__ (self):
-        super(MyWindow,self).__init__() 
-        self.counter = 0 
-        self.setGeometry(200,200,300,300)
+        super(MyWindow,self).__init__()                                         # innit super class 
+        self.setGeometry(200,200,300,300)                                       # size of window
         self.setWindowTitle("Calculator")
-
+        # input fields
         self.aField         = self.CreateInputField("a:",100,25)
         self.bField         = self.CreateInputField("b:",100,50)
         self.resultField    = self.CreateLabel("Result:",50,100)
-
+        # Math operations buttons
         self.plusBtn        = self.CreateButton("+",100,150,self.Plus)
         self.minusBtn       = self.CreateButton("-",100,175,self.Minus)
         self.multiplyBtn    = self.CreateButton("*",100,200,self.Multiply)
         self.divideBtn      = self.CreateButton("/",100,225,self.Divide)
-
-        self.a = 0
+        # reseting of start values 
+        self.a = 0                                                              
         self.b = 0 
         self.result = 0 
 
