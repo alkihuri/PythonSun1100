@@ -43,7 +43,7 @@ class MyWindow(QMainWindow):
         newButton.clicked.connect(fun) 
         return newButton
 
-    def Update(self):
+    def UpdateInput(self):
         try:
             self.a =  float(self.aField.text())
         except:
@@ -52,28 +52,30 @@ class MyWindow(QMainWindow):
             self.b =  float(self.bField.text())
         except:
             self.b = 0
+
+    def UpdateOutput(self):    
         self.resultField.setText("Result : " + str(self.result))
 
 
     def Plus(self): 
-        self.Update()
+        self.UpdateInput()
         self.result =  self.a + self.b
-        self.Update()
+        self.UpdateOutput()
 
     def Minus(self): 
-        self.Update()
+        self.UpdateInput()
         self.result = self.a - self.b
-        self.Update()
+        self.UpdateOutput()
 
     def Multiply(self): 
-        self.Update()
+        self.UpdateInput()
         self.result = self.a * self.b
-        self.Update()
+        self.UpdateOutput()
 
     def Divide(self): 
-        self.Update()
+        self.UpdateInput()
         self.result = self.a / self.b
-        self.Update()
+        self.UpdateOutput()
 
 app = QApplication(sys.argv)
 window  = MyWindow() 
