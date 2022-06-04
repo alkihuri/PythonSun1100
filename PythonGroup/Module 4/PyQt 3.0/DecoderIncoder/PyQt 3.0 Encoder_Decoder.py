@@ -3,18 +3,17 @@ from PyQt5.QtWidgets import QApplication,QMainWindow, QWidget, QLabel, QLineEdit
 import sys
  
 
-class View(QMainWindow): 
+class View(QMainWindow):  
+
     def __init__(self,newController): 
         super(View,self).__init__()     
         self.controller = newController                       
-        self.setGeometry(400,200,400,300)                                        
-        self.setWindowTitle("Decryptor")
-        # input fields
-        self.word           = self.CreateInputField("Input word:",100,25) 
-        self.resultField    = self.CreateInputField("Result:",100,75)
-        self.encryptBtn     = self.CreateButton("Encrypt",100,125,self.EncryptHandler)
-        self.decryptBtn     = self.CreateButton("Decrypt",100,175,self.DecryptHandler) 
-
+        self.setGeometry(300,200,300,250)                                        
+        self.setWindowTitle("Caesar Cipher") 
+        self.word           = self.CreateInputField("Word:",    25,25) 
+        self.resultField    = self.CreateInputField("Result:",  25,75)
+        self.encryptBtn     = self.CreateButton("Encrypt",      25,125,self.EncryptHandler)
+        self.decryptBtn     = self.CreateButton("Decrypt",      25,175,self.DecryptHandler) 
 
     def EncryptHandler(self):
         self.controller.SetWordToEncrypt(self.word.text())
@@ -24,7 +23,6 @@ class View(QMainWindow):
         self.controller.SetWordToDecrypt(self.word.text())
         self.controller.DoDecrypt()
        
-
     def CreateLabel(self,text,x,y):
         newLabel = QtWidgets.QLabel(self)
         newLabel.setText(text)
@@ -32,16 +30,17 @@ class View(QMainWindow):
         return newLabel
 
     def CreateInputField(self,label,x,y):
-        lengtOfLabelInPixels = len(label)*8
-        self.CreateLabel(label,x-(lengtOfLabelInPixels),y)
+        offsetForInputField = 50
+        self.CreateLabel(label,x,y)
         line = QLineEdit(self)
-        line.move(x, y)
+        line.move(x+offsetForInputField, y)
         line.resize(200, 32)
         return line
 
     def CreateButton(self,text,x,y,fun):
         newButton = QtWidgets.QPushButton(self)
         newButton.setText(text)
+        newButton.resize(250, 32)
         newButton.move(x,y)
         newButton.clicked.connect(fun)
         newButton.clicked.connect(self.UpdateUI)
@@ -103,7 +102,8 @@ class Controller():
 
 
 app = QApplication(sys.argv) 
-myModel = Model(1)
+key = 5
+myModel = Model(key)
 myController = Controller(myModel)
 myView = View(myController) 
 myView.show()
