@@ -8,12 +8,12 @@ class View(QMainWindow):
         super(View,self).__init__()     
         self.controller = newController                       
         self.setGeometry(400,200,400,300)                                        
-        self.setWindowTitle("Calculator")
+        self.setWindowTitle("Decryptor")
         # input fields
         self.word           = self.CreateInputField("Input word:",100,25) 
-        self.resultField    = self.CreateLabel("Result:",100,100)
-        self.encryptBtn     = self.CreateButton("Encrypt",100,200,self.EncryptHandler)
-        self.decryptBtn     = self.CreateButton("Decrypt",100,250,self.DecryptHandler) 
+        self.resultField    = self.CreateInputField("Result:",100,75)
+        self.encryptBtn     = self.CreateButton("Encrypt",100,125,self.EncryptHandler)
+        self.decryptBtn     = self.CreateButton("Decrypt",100,175,self.DecryptHandler) 
 
 
     def EncryptHandler(self):
