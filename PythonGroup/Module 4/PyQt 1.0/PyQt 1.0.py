@@ -4,8 +4,6 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication,QMainWindow
 import sys
 from PyQt5.QtWidgets import widget, widget
-app = QApplication([])
-sys.exit(app.exec_())
 class MyWindow(QMainWindow):
     def CreateLabel(self,text,x=50,y=50):
         self.newLabel = QtWidgets.QLabel(self)
