@@ -18,10 +18,8 @@ f.writelines(poem)
 
 poem = list()
 currentFilePath     = os.path.dirname(__file__)                  
-poemFilePath = currentFilePath + "/RUDYARD KIPLING.txt"
+poemFilePath = currentFilePath + "/WILLIAM SHAKESPEARE.txt"
 f = open(poemFilePath, "r")
 for x in f:
     print(x)
-
-newpoemFilePath = currentFilePath + "/WILLIAM SHAKESPEARE.txt"
-f = open(newpoemFilePath,"w")
+ 
