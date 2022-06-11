@@ -74,11 +74,6 @@ class ReaderModel():
         return poem
 
 
-
-
-
-
-
 app = QApplication(sys.argv)  
 myModel = ReaderModel()
 myViewModel = ReaderModelView()
