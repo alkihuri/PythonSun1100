@@ -13,12 +13,12 @@ class ReaderView(QMainWindow):
     def __init__(self,myViewModel): 
         super(ReaderView,self).__init__()     
         self.myViewModel = myViewModel                       
-        self.setGeometry(300,200,300,500)                                        
+        self.setGeometry(0,0,600,600)                                        
         self.setWindowTitle("Poem reader") 
-        self.poemSelectField              = self.CreateComboBox("Poem:",    25,25)     
-        self.poemSelectField.addItems(["WILLIAM SHAKESPEARE"])
-        self.poemField              = self.CreateLabel("POEM NOT LOADED",100,100)
-        self.getPoembtn             = self.CreateButton("Get poem",      25,450, self.RequestPoem) 
+        self.poemSelectField              = self.CreateComboBox("Poem:",    150,25)     
+        self.poemSelectField.addItems(["WILLIAM SHAKESPEARE","RUDYARD KIPLING"])
+        self.poemField              = self.CreateLabel("POEM NOT LOADED",150,100)
+        self.getPoembtn             = self.CreateButton("Get poem",      150,500, self.RequestPoem) 
 
     def RequestPoem(self):
         self.poemString = self.myViewModel.SetPath(self.poemSelectField.currentText())   
@@ -41,7 +41,7 @@ class ReaderView(QMainWindow):
     def CreateButton(self,text,x,y,fun):
         newButton = QtWidgets.QPushButton(self)
         newButton.setText(text)
-        newButton.resize(250, 32)
+        newButton.resize(250, 50)
         newButton.move(x,y)
         newButton.clicked.connect(fun) 
         return newButton
@@ -49,10 +49,10 @@ class ReaderView(QMainWindow):
     def UpdateUI(self):
         self.poemField.setText("")
         total = ""
-        lineOffset = 10 
+        lineOffset = 25 
         for x in self.poemString: 
             total += x  + "\n"  
-        self.poemField.resize(100,lineOffset * len(self.poemString))
+        self.poemField.resize(500,lineOffset * len(self.poemString))
         self.poemField.setText(total)
 
 class ReaderModelView(): 
