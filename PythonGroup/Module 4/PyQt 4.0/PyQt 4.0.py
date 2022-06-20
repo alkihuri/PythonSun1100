@@ -63,8 +63,7 @@ class ReaderModel():
 
 
 
-app = QApplication(sys.argv)  
-myModel = ReaderModel()
+app = QApplication(sys.argv)   
 myViewModel = ReaderModelView()
 myView = ReaderView(myViewModel) 
 myView.show()
